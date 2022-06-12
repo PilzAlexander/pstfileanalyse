@@ -23,7 +23,8 @@ def parse_folder(base):
             messages.append({
                 "subject": message.subject,
                 "sender": message.sender_name,
-                "datetime": message.client_submit_time
+                "datetime": message.client_submit_time,
+                "text": message.plain_text_body
             })
     print(countEmails)
     return messages
