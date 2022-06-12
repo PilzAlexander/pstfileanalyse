@@ -1,40 +1,30 @@
 from os import write
 import sys
 import csv
+import pandas as pd
 
-maxInt = sys.maxsize
+emails = []
 
-counter = 1
+file = 'C:\\Users\\Alexp\\PycharmProjects\\pstfileanalyse\\CSVFiles\\LRKOPosteingang.CSV'
 
-while True:
-    # decrease the maxInt value by factor 10 
-    # as long as the OverflowError occurs.
-    try:
-        csv.field_size_limit(maxInt)
-        break
-    except OverflowError:
-        maxInt = int(maxInt / 10)
-
-##############################################
-email_list = []
-
-# 'C:\\Users\\Alexp\\PycharmProjects\\pstfileanalyse\\CSVFiles\\APWPosteingang.CSV'
-
-with open('C:\\Users\\Alexp\\PycharmProjects\\pstfileanalyse\\CSVFiles\\From.csv', 'r', encoding='UTF8') as in_file:
+with open(file, 'r', encoding='UTF8') as in_file:
     for row in csv.reader(in_file):
         if not row:
             test = 0
         else:
-            if row[0] in email_list:
-                index = email_list.index(row[0])
-                email_list[index + 1] = email_list[index + 1] + 1
+            if row[0] in emails:
+                index = emails.index(row[0])
+                emails[index + 1] = emails[index + 1] + 1
             else:
                 tmp_word = row[0]
-                email_list.append(tmp_word)
-                email_list.append(1)
+                emails.append(tmp_word)
+                emails.append(1)
 
 with open('FromCount.csv', mode='w', encoding='UTF8', newline='') as out_file:
-    writer = csv.writer(out_file)
-    tmp_length = int(len(email_list) / 2)
-    for i in range(0, tmp_length):
-        writer.writerow([email_list[(i * 2)], email_list[(i * 2) + 1]])
+    header = ['Sender', 'Received Mails']
+
+    writer = csv.writer(out_file) # create the writer
+    writer.writerow(header) # write the header rows
+    length = int(len(emails) / 2)
+    for i in range(0, length):
+        writer.writerow([emails[(i * 2)], emails[(i * 2) + 1]])
