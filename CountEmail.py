@@ -5,7 +5,7 @@ import pandas as pd
 
 emails = []
 
-file = 'C:\\Users\\Alexp\\PycharmProjects\\pstfileanalyse\\CSVFiles\\LRKOPosteingang.CSV'
+file = 'C:\\Users\\Alexp\\PycharmProjects\\pstfileanalyse\\Sender.CSV'
 
 with open(file, 'r', encoding='UTF8') as in_file:
     for row in csv.reader(in_file):
@@ -19,6 +19,7 @@ with open(file, 'r', encoding='UTF8') as in_file:
                 tmp_word = row[0]
                 emails.append(tmp_word)
                 emails.append(1)
+
 
 with open('FromCount.csv', mode='w', encoding='UTF8', newline='') as out_file:
     header = ['Sender', 'Received Mails']

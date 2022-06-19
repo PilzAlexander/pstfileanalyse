@@ -73,6 +73,27 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\Date.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Datetime.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\From.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\FromCount.csv">
           <value>
             <Attribute>
@@ -94,6 +115,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\Sender.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\SpamWordHits.csv">
           <value>
             <Attribute>
@@ -101,17 +129,17 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\merged_output.csv">
+        <entry key="\Subject.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\output.csv">
+        <entry key="\To.csv">
           <value>
             <Attribute>
-              <option name="separator" value="," />
+              <option name="separator" value=":" />
             </Attribute>
           </value>
         </entry>
