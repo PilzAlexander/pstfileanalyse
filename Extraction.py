@@ -1,5 +1,5 @@
 import csv
-
+import datetime
 import pypff
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -7,7 +7,8 @@ import seaborn as sns
 
 pst = pypff.file()
 # pst.open("C:\\Users\\Alexp\\PycharmProjects\\pstfileanalyse\\PSTFiles\\LRKO.pst")
-pst.open("C:\\Users\\Alexp\\PycharmProjects\\pstfileanalyse\\PSTFiles\\MergedPstAPW_backupA.pst")
+# pst.open("C:\\Users\\Alexp\\PycharmProjects\\pstfileanalyse\\PSTFiles\\MergedPstAPW_backupA.pst")
+pst.open("C:\\Users\\Alexp\\PycharmProjects\\pstfileanalyse\\PSTFiles\\BigMerge.pst")
 
 root = pst.get_root_folder()
 
@@ -38,13 +39,42 @@ def get_total_number_of_emails(messages):
         count += 1
     return count
 
+def get_weekday_count(messages):
+    count = [0, 0, 0, 0, 0, 0, 0]
+    for message in messages:
+        if message["datetime"].weekday() == 0:
+            count[0] += 1
+        elif message["datetime"].weekday() == 1:
+            count[1] += 1
+        elif message["datetime"].weekday() == 2:
+            count[2] += 1
+        elif message["datetime"].weekday() == 3:
+            count[3] += 1
+        elif message["datetime"].weekday() == 4:
+            count[4] += 1
+        elif message["datetime"].weekday() == 5:
+            count[5] += 1
+        elif message["datetime"].weekday() == 6:
+            count[6] += 1
+    return count
+
+
+def plot_weekdays_from_list(weekdays):
+    plt.bar(range(len(weekdays)), weekdays)
+    plt.xticks(range(len(weekdays)), ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'])
+    plt.show()
 
 messages = parse_folder(root)
+get_weekday_count(messages)
+weekdays = get_weekday_count(messages)
+plot_weekdays_from_list(weekdays)
 
 totalnumber = get_total_number_of_emails(messages)
 print(totalnumber)
 
 df = pd.DataFrame(messages)
+
+
 df.to_csv('MessagesPD.csv', index=False)
 
 df['datetime'] = df['datetime'].dt.tz_localize(tz='UTC')
@@ -59,3 +89,5 @@ ax.set(xlim=(2022, 2022.5), ylim=(1, 24))
 ax.invert_yaxis()
 sns.despine()
 ax.get_figure().savefig("plot.png", dpi=1200)
+
+

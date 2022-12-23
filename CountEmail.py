@@ -6,7 +6,6 @@ from matplotlib import pyplot as plt
 
 file = 'C:\\Users\\Alexp\\PycharmProjects\\pstfileanalyse\\Sender.CSV'
 
-
 def get_emails(file):
     emails = []
     with open(file, 'r', encoding='UTF8') as in_file:

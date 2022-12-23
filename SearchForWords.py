@@ -42,6 +42,7 @@ spamWordList = ['€€€',
                 'Werden Sie Ihr eigener Chef', 'Wie im Fernsehen gesehen', 'Wir haben eine Stelle für Sie', 'XXX'
 
                 ]
+print(len(spamWordList))
 
 for i in range(len(spamWordList)):
     tmp_string = ''.join(spamWordList[i])
@@ -56,9 +57,8 @@ with open('MessagesPD.csv', encoding='UTF8') as f:
     contents = f.read()
     for i in range(len(spamWordList)):
         tmp_word = spamWordList[i]
-        # count = contents.count(list[i].lower)
         count = contents.count(tmp_word)
-        print(spamWordList[i], count)
+        # print(spamWordList[i], count)
         if count != 0:
             word_list.append(spamWordList[i])
             word_list.append(count)
